@@ -1,34 +1,47 @@
-// Let's start with importing `NlpManager` from `node-nlp`. This will be responsible for training, saving, loading and processing.
-const { NlpManager } = require("node-nlp");
-// Creating new Instance of NlpManager class.
-const manager = new NlpManager({ languages: ["en"] });
-// Let's import fs module to read our json files.
-const fs = require("fs");
-// Let's read all our intents files in the folder intents
-fs.readdir(__dirname+"/intents/",(err,x)=>{
-    if (err) {
-        console.log(err)
-    }for (const file of x) {
-        fs.readFile(`./intents/${file}`,(erro,y)=>{
-            data = JSON.parse(y);
-            const intent = file.replace(".json", "");
-            for (const question of data.questions) {
-                manager.addDocument("en", question, intent);
-            }
-            for (const answer of data.answers) {
-                manager.addAnswer("en", intent, answer);
-            }
-        });
-        
-    }
-});
-// console.log(files)
-// Looping through the files and Parsing the string to object and passing it to manager instance to train and process it.
+// Load Naive Bayes Text Classifier
+var Classifier = require( 'wink-naive-bayes-text-classifier' );
+const fs = require("fs")
 
-// let's create a function that will be responsible for Training and saving the manager instance.
-async function train_save(){
-    await manager.train();
-    manager.save();
+// Instantiate
+var nbc = Classifier();
+
+// Load wink nlp and its model
+const winkNLP = require( 'wink-nlp' );
+
+// Load language model
+const model = require( 'wink-eng-lite-web-model' );
+const nlp = winkNLP( model );
+const its = nlp.its;
+
+const prepTask = function ( text ) {
+  const tokens = [];
+  nlp.readDoc(text)
+      .tokens()
+      // Use only words ignoring punctuations etc and from them remove stop words
+      .filter( (t) => ( t.out(its.type) === 'word' && !t.out(its.stopWordFlag) ) )
+      // Handle negation and extract stem of the word
+      .each( (t) => tokens.push( (t.out(its.negationFlag)) ? '!' + t.out(its.stem) : t.out(its.stem) ) );
+
+  return tokens;
+};
+nbc.definePrepTasks( [ prepTask ] );
+
+// Configure behavior
+nbc.defineConfig( { considerOnlyPresence: true, smoothingFactor: 0.5 } );
+
+// Train!
+let data = fs.readFileSync("./src/intents/intents.json")
+dataset = JSON.parse(data)
+dataset.forEach((data) => {
+  nbc.learn(data.summary,data.inference)
+});
+nbc.consolidate();
+console.log("Trained")
+
+// Start predicting...
+function ask(summary){
+  return nbc.predict(summary)
 }
-// Calling the above function
-train_save();
+// -> prepay
+
+module.exports = {ask:ask}

@@ -1,0 +1,78 @@
+[
+    {
+      "summary": "I failed this test, so I'm going to fail all my tests",
+      "inference": "cognitive-reappraisal"
+    },
+    {
+      "summary": "Everyone always ignores me",
+      "inference": "cognitive-reappraisal"
+    },
+    {
+      "summary": "If someone doesn't agree with me, they must be against me",
+      "inference": "cognitive-restructuring"
+    },
+    {
+      "summary": "If I'm not the best, I'm a loserIf I'm late, my boss will think I'm unreliable and I'll get fired",
+      "inference": "cognitive-restructuring"
+    },
+    {
+      "summary": "I must be having a heart attack and I'm going to die",
+      "inference": "catastrophizing"
+    },
+    {
+      "summary": "I'm going to fail this class and never graduate",
+      "inference": "catastrophizing"
+    },
+    {
+      "summary": "I'm never going to lose weight and I'll always be overweight",
+      "inference": "catastrophizing"
+    },
+    {
+      "summary": "If I'm late, my boss will think I'm unreliable and I'll get fired",
+      "inference": "catastrophizing"
+    },
+    {
+      "summary": "My relationship is over and I'm going to be alone forever",
+      "inference": "catastrophizing"
+    },
+    {
+      "summary": "I didn't get the job, so I'm never going to find a job that I like.",
+      "inference": "all-or-nothing"
+    },
+    {
+      "summary": "If I can't finish my workout routine today, I might as well not even try tomorrow",
+      "inference": "all-or-nothing"
+    },
+    {
+      "summary": "If I don't get an A on this assignment, I'll never be successful in this class.",
+      "inference": "all-or-nothing"
+    },
+    {
+      "summary": "If my partner doesn't always agree with me, then they don't really care about me",
+      "inference": "all-or-nothing"
+    },
+    {
+      "summary": "If I'm not the best at something, I might as well not even try at all",
+      "inference": "all-or-nothing"
+    },
+    {
+      "summary": "I failed my math test, so I'm terrible at all subjects",
+      "inference": "overgeneralization"
+    },
+    {
+      "summary": "I had a bad experience with one therapist, so all therapy is useless",
+      "inference": "overgeneralization"
+    },
+    {
+      "summary": "No one likes me because I'm always awkward in social situations",
+      "inference": "overgeneralization"
+    },
+    {
+      "summary": "Every time I speak up in a meeting, I make a fool of myself.",
+      "inference": "overgeneralization"
+    },
+    {
+      "summary": "All men/women are untrustworthy and will just break your heart.",
+      "inference": "overgeneralization"
+    }
+  ]
