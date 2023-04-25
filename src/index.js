@@ -1,7 +1,8 @@
 const express = require("express")
 const { ask } = require("./bot")
+require('dotenv').config()
 const app = express()
-const port = 6969
+const port = process.env.PORT
 const host = "0.0.0.0"
 
 app.use(express.json())
